@@ -1,0 +1,76 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+html {
+	background: #74ebd5; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#74aaeb,
+		#acb6e5
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#74ebd5,
+		#acb6e5
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	min-height: 1000px;
+	font-family: "roves-sans", sans-serif;
+	font-size: 20px;
+}
+
+.box {
+	max-width: 600px;
+	margin: 50px auto;
+	background: white;
+	border-radius: 5px;
+	box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+.box-heading {
+	background: #a683e3;
+	color: #fff;
+	padding: 10px;
+	padding-left: 16px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.box-body {
+	padding: 10px;
+}
+.box-label{
+    margin-bottom: 10px;
+}
+.add-class {
+	padding: 10px;
+}
+button {
+    border-radius:10px;
+    padding:10px;
+	background-color: #a683e3;
+	border-color: transparent;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+    color:white;
+    display:inline-block;
+}
+button:hover {
+	background-color: #d56dc9; /* Green */
+	color: white;
+}
+
+.GPA{
+    display:inline-block;
+}
+.courseGrade{
+    width:50px;
+}
+label{
+    display:inline-block;
+    margin-left:5px;
+    margin-right:5px;
+}
+.courseCredits{
+    width:50px;
+}
