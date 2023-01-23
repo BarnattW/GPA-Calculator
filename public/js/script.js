@@ -19,6 +19,7 @@ const addCourse = function () {
     <input class="courseGrade" value="A" />
     <label>Credits:</label>
     <input class="courseCredits" value="1" />
+	<span class="close">x</span>
 </div>`;
 	boxBody.insertAdjacentHTML("beforeend", html);
 };
@@ -42,8 +43,16 @@ const saveSelection = function () {
 	setLocalStorage();
 };
 
+const deleteCourse = function (event) {
+	const el = event.target;
+	const label = el.closest("div");
+	label.innerHTML = "";
+	label.remove();
+};
+
 const setLocalStorage = function () {
 	localStorage.setItem("grades", JSON.stringify(selection));
+	console.log(localStorage);
 };
 
 const calculateGPA = function () {
@@ -62,19 +71,15 @@ const calculateGPA = function () {
 		"D-": 0.7,
 		F: 0,
 	};
-	let sumGrades = 0;
 	let sumCredit = 0;
-	const gradeList = [];
-	const creditList = [];
+	let score = 0;
 	const credits = document.querySelectorAll(".courseCredits");
 	const grades = document.querySelectorAll(".courseGrade");
 	for (let i = 0; i < credits.length; i++) {
-		gradeList.push(grades[i].value);
-		sumGrades += letterGrade[grades[i].value];
-		creditList.push(credits[i].value);
 		sumCredit += Number(credits[i].value);
+		score += letterGrade[grades[i].value] * Number(credits[i].value);
 	}
-	const GPA = (sumGrades / sumCredit).toFixed(1);
+	const GPA = (score / sumCredit).toFixed(1);
 	showGPA.textContent = `GPA: ${GPA}`;
 };
 
@@ -103,6 +108,7 @@ const renderCoursework = function (content) {
     <input class="courseGrade" value="${content.grade}" />
     <label>Credits:</label>
     <input class="courseCredits" value="${content.credit}" />
+	<span class="close">x</span>
 </div>`;
 	boxBody.insertAdjacentHTML("beforeend", html);
 };
@@ -117,8 +123,18 @@ init();
 addBtn.addEventListener("click", addCourse);
 saveBtn.addEventListener("click", saveSelection);
 clearBtn.addEventListener("click", reset);
-boxBody.addEventListener("change", function(e){
-    if (e.target.classList.contains("courseGrade") || e.target.classList.contains("courseCredits") ){
-        calculateGPA();
-    }
-})
+boxBody.addEventListener("click", function (e) {
+	//console.log(e.target);
+	if (
+		e.target.classList.contains("box-label") ||
+		e.target.classList.contains("courseGrade") ||
+		e.target.classList.contains("courseCredits")
+	) {
+		calculateGPA();
+	}
+
+	if (e.target.classList.contains("close")) {
+		deleteCourse(e);
+		console.log("1");
+	}
+});

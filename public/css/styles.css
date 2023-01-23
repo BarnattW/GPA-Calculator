@@ -74,3 +74,14 @@ label{
 .courseCredits{
     width:50px;
 }
+
+.close {
+	cursor: pointer;
+	top: 50%;
+	right: 0%;
+	padding: 12px 16px;
+	transform: translate(0%, -50%);
+	color: #a683e3
+  }
+  
+  .close:hover {color: #d56dc9;;}
