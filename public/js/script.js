@@ -19,8 +19,16 @@ const addCourse = function () {
     <input class="courseGrade" value="A" />
     <label>Credits:</label>
     <input class="courseCredits" value="1" />
+	<span class="close">x</span>
 </div>`;
 	boxBody.insertAdjacentHTML("beforeend", html);
+};
+
+const deleteCourse = function (event) {
+	const el = event.target;
+	const label = el.closest("div");
+	label.innerHTML = "";
+	label.remove();
 };
 
 const saveSelection = function () {
@@ -103,6 +111,7 @@ const renderCoursework = function (content) {
     <input class="courseGrade" value="${content.grade}" />
     <label>Credits:</label>
     <input class="courseCredits" value="${content.credit}" />
+	<span class="close">x</span>
 </div>`;
 	boxBody.insertAdjacentHTML("beforeend", html);
 };
@@ -117,8 +126,11 @@ init();
 addBtn.addEventListener("click", addCourse);
 saveBtn.addEventListener("click", saveSelection);
 clearBtn.addEventListener("click", reset);
-boxBody.addEventListener("change", function(e){
-    if (e.target.classList.contains("courseGrade") || e.target.classList.contains("courseCredits") ){
-        calculateGPA();
-    }
-})
+boxBody.addEventListener("click", function (e) {
+	if (e.target.classList.contains("box-label")) {
+		calculateGPA();
+	}
+	if (e.target.classList.contains("close")) {
+		deleteCourse(e);
+	}
+});
